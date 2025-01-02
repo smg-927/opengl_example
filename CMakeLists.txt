@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-#add_compile_options(/utf-8)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
 
 set(PROJECT_NAME opengl_example)
 set(CMAKE_CXX_STANDARD 17) # 11 14 17
@@ -14,6 +14,8 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/common.cpp src/common.h
     src/shader.cpp src/shader.h
+    src/program.cpp src/program.h
+    src/context.cpp src/context.h
     )
 
 include(Dependency.cmake)
