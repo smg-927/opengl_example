@@ -9,13 +9,19 @@ set(WINDOW_NAME "OpenGL Example")
 set(WINDOW_WIDTH 960)
 set(WINDOW_HEIGHT 540)
 
+
+# 여기에 포함 시켜야 헤더파일 사용 가능능
 project(${PROJECT_NAME})
-add_executable(${PROJECT_NAME} 
+add_executable(${PROJECT_NAME}  
     src/main.cpp
     src/common.cpp src/common.h
     src/shader.cpp src/shader.h
     src/program.cpp src/program.h
     src/context.cpp src/context.h
+    src/buffer.cpp src/buffer.h
+    src/vertex_layout.cpp src/vertex_layout.h
+    src/image.cpp src/image.h
+    src/texture.cpp src/texture.h
     )
 
 include(Dependency.cmake)

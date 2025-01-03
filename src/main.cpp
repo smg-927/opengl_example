@@ -9,8 +9,21 @@
 #include <glfw/glfw3.h>
 
 void OnFramebufferSizeChange(GLFWwindow* window, int width, int height) {
-    SPDLOG_INFO("framebuffer size changed: ({} x {})", width, height);
-    glViewport(0, 0, width, height);
+  SPDLOG_INFO("framebuffer size changed: ({} x {})", width, height);
+  auto context = (Context*)glfwGetWindowUserPointer(window);
+  context->Reshape(width, height);
+}
+
+void OnCursorPos(GLFWwindow* window, double x, double y) {
+  auto context = (Context*)glfwGetWindowUserPointer(window);
+  context->MouseMove(x, y);
+}
+
+void OnMouseButton(GLFWwindow* window, int button, int action, int modifier) {
+  auto context = (Context*)glfwGetWindowUserPointer(window);
+  double x, y;
+  glfwGetCursorPos(window, &x, &y);
+  context->MouseButton(button, action, x, y);
 }
 
 void OnKeyEvent(GLFWwindow* window,
@@ -73,25 +86,19 @@ int main(int argc, const char** argv){
         return -1;
     }
 
-    glfwSetFramebufferSizeCallback(window, OnFramebufferSizeChange);
-
-    ShaderPtr vertShader = Shader::CreateFromFile("./shader/simple.vs", GL_VERTEX_SHADER);
-    ShaderPtr fragShader = Shader::CreateFromFile("./shader/simple.fs", GL_FRAGMENT_SHADER);
-    SPDLOG_INFO("vertex shader id: {}", vertShader->Get());
-    SPDLOG_INFO("fragment shader id: {}", fragShader->Get());
-
-
-    auto program = Program::Create({fragShader, vertShader});
-    SPDLOG_INFO("program id: {}", program ->Get());
+    glfwSetWindowUserPointer(window, context.get());
 
     OnFramebufferSizeChange(window, WINDOW_WIDTH, WINDOW_HEIGHT);
     glfwSetFramebufferSizeCallback(window, OnFramebufferSizeChange);
     glfwSetKeyCallback(window, OnKeyEvent);
+    glfwSetCursorPosCallback(window, OnCursorPos);
+    glfwSetMouseButtonCallback(window, OnMouseButton);
 
     //glfw 루프실행, 윈도우 close 버튼을 누르면 정상 종료
     SPDLOG_INFO("start main loop");
     while(!glfwWindowShouldClose(window)){
         glfwPollEvents();
+        context->ProcessInput(window);
         context -> Render();
         glfwSwapBuffers(window);
 
