@@ -103,7 +103,7 @@ set(DEP_LIST ${DEP_LIST} imgui)
 set(DEP_LIBS ${DEP_LIBS} imgui)
 
 # assimp
-ExternalProject_Add(
+ExternalProject_Add( # 라이브러리 이름들을 조금 바꿔야한대. 리눅스로 하려면
   dep_assimp
   GIT_REPOSITORY "https://github.com/assimp/assimp"
   GIT_TAG "v5.4.3"
