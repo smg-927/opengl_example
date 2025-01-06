@@ -103,7 +103,7 @@ set(DEP_LIST ${DEP_LIST} imgui)
 set(DEP_LIBS ${DEP_LIBS} imgui)
 
 # assimp
-ExternalProject_Add( # 라이브러리 이름들을 조금 바꿔야한대. 리눅스로 하려면
+ExternalProject_Add(
   dep_assimp
   GIT_REPOSITORY "https://github.com/assimp/assimp"
   GIT_TAG "v5.4.3"
@@ -121,8 +121,7 @@ ExternalProject_Add( # 라이브러리 이름들을 조금 바꿔야한대. 리�
   )
 set(DEP_LIST ${DEP_LIST} dep_assimp)
 set(DEP_LIBS ${DEP_LIBS}
-  assimp-vc143-mt$<$<CONFIG:Debug>:d>
+  assimp-vc143-mt # assimp-vc143-mt$<$<CONFIG:Debug>:d> 원래 이건데 왜 안되냐 데탑에서서
   zlibstatic$<$<CONFIG:Debug>:d>
-  IrrXML$<$<CONFIG:Debug>:d>
-  )
+  )# 원래 IrrXML$<$<CONFIG:Debug>:d> 이것도 추가인데 왜 여기서 안되냐 진짜 ㅋㅋ 이유를 모르겠네
 
