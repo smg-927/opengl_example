@@ -104,27 +104,25 @@ set(DEP_LIBS ${DEP_LIBS} imgui)
 
 # assimp
 ExternalProject_Add(
-    dep_assimp
-    GIT_REPOSITORY "https://github.com/assimp/assimp"
-    GIT_TAG "v5.4.3"  # 최신 버전 사용
-    GIT_SHALLOW 1
-    UPDATE_COMMAND ""
-    PATCH_COMMAND ""
-    CMAKE_ARGS
-        -DCMAKE_INSTALL_PREFIX=${DEP_INSTALL_DIR}
-        -DBUILD_SHARED_LIBS=OFF
-        -DASSIMP_BUILD_ASSIMP_TOOLS=OFF
-        -DASSIMP_BUILD_TESTS=OFF
-        -DASSIMP_BUILD_ZLIB=ON
-        -DASSIMP_INJECT_DEBUG_POSTFIX=ON
-        -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${DEP_INSTALL_DIR}/bin
-        -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=${DEP_INSTALL_DIR}/lib
-        -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${DEP_INSTALL_DIR}/lib
-    TEST_COMMAND ""
-)
+  dep_assimp
+  GIT_REPOSITORY "https://github.com/assimp/assimp"
+  GIT_TAG "v5.4.3"
+  GIT_SHALLOW 1
+  UPDATE_COMMAND ""
+  PATCH_COMMAND ""
+  CMAKE_ARGS
+      -DCMAKE_INSTALL_PREFIX=${DEP_INSTALL_DIR}
+      -DBUILD_SHARED_LIBS=OFF
+      -DASSIMP_BUILD_ASSIMP_TOOLS=OFF
+      -DASSIMP_BUILD_TESTS=OFF
+      -DASSIMP_INJECT_DEBUG_POSTFIX=OFF
+      -DASSIMP_BUILD_ZLIB=ON
+  TEST_COMMAND ""
+  )
 set(DEP_LIST ${DEP_LIST} dep_assimp)
 set(DEP_LIBS ${DEP_LIBS}
-    assimp-vc143-mt$<$<CONFIG:Debug>:d>
-    zlibstatic$<$<CONFIG:Debug>:d>
-    IrrXML$<$<CONFIG:Debug>:d>
-)
+  assimp-vc143-mt$<$<CONFIG:Debug>:d>
+  zlibstatic$<$<CONFIG:Debug>:d>
+  IrrXML$<$<CONFIG:Debug>:d>
+  )
+

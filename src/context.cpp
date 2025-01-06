@@ -168,7 +168,7 @@ void Context::Render() {
 void Context::ProcessInput(GLFWwindow* window) {
 
 
-    const float cameraSpeed = 0.05f;
+    const float cameraSpeed = 0.02f;
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         m_cameraPos += cameraSpeed * m_cameraFront;
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
