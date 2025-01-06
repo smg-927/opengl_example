@@ -1,13 +1,12 @@
-#include "context.h"
-#include "shader.h"
-#include "common.h"
-#include "program.h"
-
 #include <spdlog/spdlog.h>
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
+#include "context.h"
+#include "shader.h"
+#include "common.h"
+#include "program.h"
 
 void OnFramebufferSizeChange(GLFWwindow* window, int width, int height) {
     SPDLOG_INFO("framebuffer size changed: ({} x {})", width, height);
