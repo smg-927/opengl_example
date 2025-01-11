@@ -9,6 +9,7 @@
 #include "texture.h"
 #include "mesh.h"
 #include "model.h"
+#include "framebuffer.h"
 
 CLASS_PTR(Context)
 class Context {
@@ -25,8 +26,9 @@ private:
     ProgramUPtr m_program;
     ProgramUPtr m_simpleProgram;
 	ProgramUPtr m_textureProgram;
-    TexturePtr m_windowTexture;
-
+    ProgramUPtr m_postProgram;
+    float m_gamma {1.0f};
+    
     MeshUPtr m_box;
     MeshUPtr m_plane;
 
@@ -53,6 +55,7 @@ private:
     MaterialPtr m_planeMaterial;
     MaterialPtr m_box1Material;
     MaterialPtr m_box2Material;
+    TexturePtr m_windowTexture;
 
     bool m_cameraControl { false };
     glm::vec2 m_prevMousePos { glm::vec2(0.0f) };
@@ -62,6 +65,14 @@ private:
     glm::vec3 m_cameraFront { glm::vec3(0.0f, 0.0f, -1.0f) };
     glm::vec3 m_cameraUp { glm::vec3(0.0f, 1.0f, 0.0f) };
 
+    // framebuffer
+    FramebufferUPtr m_framebuffer;
+
+    // cubemap
+    CubeTextureUPtr m_cubeTexture;
+    ProgramUPtr m_skyboxProgram;
+    ProgramUPtr m_envMapProgram;
+    
     int m_width {WINDOW_WIDTH};
     int m_height {WINDOW_HEIGHT};
 };

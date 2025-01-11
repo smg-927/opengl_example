@@ -10,7 +10,7 @@ set(WINDOW_WIDTH 960)
 set(WINDOW_HEIGHT 540)
 
 
-# 여기에 포함 시켜야 헤더파일 사용 가능능
+# 여기에 포함 시켜야 헤더파일 사용 가능
 project(${PROJECT_NAME})
 add_executable(${PROJECT_NAME}  
     src/main.cpp
@@ -24,6 +24,7 @@ add_executable(${PROJECT_NAME}
     src/texture.cpp src/texture.h
     src/mesh.cpp src/mesh.h
     src/model.cpp src/model.h
+    src/framebuffer.cpp src/framebuffer.h
     )
 
 include(Dependency.cmake)
