@@ -121,7 +121,11 @@ ExternalProject_Add(
   )
 set(DEP_LIST ${DEP_LIST} dep_assimp)
 set(DEP_LIBS ${DEP_LIBS}
-  assimp-vc143-mt # assimp-vc143-mt$<$<CONFIG:Debug>:d> 원래 이건데 왜 안되냐 데탑에서서
-  zlibstatic$<$<CONFIG:Debug>:d>
+    assimp-vc143-mt$<$<CONFIG:Debug>:d> # assimp-vc143-mt$<$<CONFIG:Debug>:d> 원래 이건데 왜 안되냐 데탑에서서
+    zlibstatic$<$<CONFIG:Debug>:d>
+    IrrXML$<$<CONFIG:Debug>:d>
   )# 원래 IrrXML$<$<CONFIG:Debug>:d> 이것도 추가인데 왜 여기서 안되냐 진짜 ㅋㅋ 이유를 모르겠네
 
+  #assimp-vc143-mt  // or // assimp-vc143-mt$<$<CONFIG:Debug>:d>
+  #  zlibstatic$<$<CONFIG:Debug>:d> 공통
+  # // or // IrrXML$<$<CONFIG:Debug>:d>
